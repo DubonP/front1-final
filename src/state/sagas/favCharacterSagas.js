@@ -1,26 +1,28 @@
-import { addCharacters, removeCharacters, setIsFavorito } from '../features/characters';
-import { put, takeEvery } from 'redux-saga/effects';
+import {
+  selectedCharactersSelector,
+  setFavoriteCharacters,
+} from "../features/characters";
+import { put, takeLatest, call, select } from "redux-saga/effects";
 
-// Worker Saga
-export function* addCharactersSaga(action) {
-  try {
-    yield put(addCharacters(action.payload));
-  } catch (error) {
-    console.log(error);
-  }
-}
-
-export function* removeCharactersSaga(action) {
-  try {
-    yield put(removeCharacters(action.payload));
-  } catch (error) {
-    console.log(error);
+export function* getFavCharacter() {
+  const selectedCharacters = yield select(selectedCharactersSelector);
+  if (selectedCharacters.length > 0) {
+    const response = yield call(
+      fetch,
+      `https://rickandmortyapi.com/api/character/${selectedCharacters}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    const data = yield response.json();
+    yield put(setFavoriteCharacters(data));
   }
 }
 
 // Watcher Saga
 export default function* favCharacterSagas() {
-  yield takeEvery('favCharacter/addCharacters', addCharactersSaga);
-  yield takeEvery('favCharacter/removeCharacters', removeCharactersSaga);
+  yield takeLatest("cart/getFavCharacter", getFavCharacter);
 }
-

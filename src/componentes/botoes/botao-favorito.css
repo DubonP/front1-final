@@ -38,3 +38,54 @@
     box-shadow: none;
     transform: translateY(0);
   }
+
+  .featherTrue{
+    color: #000000;
+  }
+
+/* False */
+
+  .botao-desfavorito{
+    appearance: none;
+    background-color: #7ee37b;
+    border: 2px solid #1A1A1A;
+    border-radius: 15px;
+    box-sizing: border-box;
+    color: #3B3B3B;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: normal;
+    margin: 0;
+    outline: none;
+    text-align: center;
+    text-decoration: none;
+    transition: all 500ms cubic-bezier(.23, 1, 0.32, 1);
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    width: 110px;
+    height: 42px;
+    will-change: transform;
+  }
+  
+  .botao-desfavorito:disabled {
+    pointer-events: none;
+  }
+  
+  .botao-desfavorito:hover {
+    color: rgb(0, 0, 0);
+    background-color: #ffffff;
+    box-shadow: #000000 2px 2px 4px;
+    transform: translateY(-2px);
+  }
+  
+  .botao-desfavorito:active {
+    box-shadow: none;
+    transform: translateY(0);
+  }
+
+  .featherFalse{
+    color: #000000;
+  }

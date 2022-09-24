@@ -8,15 +8,23 @@ import "./paginacao.css";
  *
  * @returns Elemento JSX
  */
-const Paginacao = () => {
+
+const Paginacao = ({ postPerPage, totalPosts, paginate }) => {
+  const pageNumbers = [];
+
+  for (let i = 1; i <= Math.ceil(totalPosts / postPerPage); i++) {
+    pageNumbers.push(i);
+  }
+
   return (
     <div className="paginacao">
-      <button disabled={true} className={"primary"}>
-        Anterior
-      </button>
-      <button disabled={false} className={"primary"}>
-        Próximo
-      </button>
+      {pageNumbers.map((number) => (
+        <div key={number}>
+          <button onClick={() => paginate(number)} disabled={false} className={"primary"}>
+            {number}
+          </button>
+        </div>
+      ))}
     </div>
   );
 };

@@ -1,7 +1,6 @@
 import "./grade-personagem.css";
 import CardPersonagem from "./card-personagem.componente";
 import { useSelector } from "react-redux";
-import { availableCharactersSelector } from "../../state/features/characters";
 
 /**
  * Grade de personagens para a página inicial
@@ -12,10 +11,9 @@ import { availableCharactersSelector } from "../../state/features/characters";
  * @returns Elemento JSX
  */
 const GradePersonagem = ({ selector }) => {
-  const personagens = useSelector(selector);
   return (
     <div className="grade-personagens">
-      {personagens.map((personagem) => (
+      {selector.map((personagem) => (
         <CardPersonagem key={personagem.id} personagem={personagem} />
       ))}
     </div>
