@@ -11,8 +11,8 @@ import { availableCharactersSelector } from "../../state/features/characters";
  *
  * @returns Elemento JSX
  */
-const GradePersonagem = () => {
-  const personagens = useSelector(availableCharactersSelector);
+const GradePersonagem = ({ selector }) => {
+  const personagens = useSelector(selector);
   return (
     <div className="grade-personagens">
       {personagens.map((personagem) => (

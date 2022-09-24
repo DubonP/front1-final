@@ -1,6 +1,6 @@
 import BotaoFavorito from "../botoes/botao-favorito.componente";
 import "./card-personagem.css";
-import { isFavoritoSelector } from "../../state/features/characters";
+import { selectedCharactersSelector } from "../../state/features/characters";
 import { useSelector } from "react-redux";
 
 /**
@@ -13,7 +13,15 @@ import { useSelector } from "react-redux";
  */
 
 const CardPersonagem = ({ personagem }) => {
-  const isFavorito = useSelector(isFavoritoSelector);
+  const isFavorito = useSelector(selectedCharactersSelector);
+
+  function favorito(char) {
+    if (isFavorito.toString().includes(char)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 
   return (
     <div className="card-personagem">
@@ -22,10 +30,13 @@ const CardPersonagem = ({ personagem }) => {
       </div>
       <div className="card-personagem__conteudo">
         <h3>{personagem.name}</h3>
-      
-      <div className="card-personagem__acoes">
-        <BotaoFavorito charId = {personagem.id} isFavorito={isFavorito} />
-      </div>
+
+        <div className="card-personagem__acoes">
+          <BotaoFavorito
+            charId={personagem.id}
+            isFavorito={favorito(personagem.id)}
+          />
+        </div>
       </div>
     </div>
   );

@@ -18,7 +18,7 @@ const slice = createSlice({
         state.selectedCharacters = [...state.selectedCharacters, (action.payload || [])];
       },
       removeCharacters: (state, action) => {
-        state.selectedCharacters = state.selectedCharacters.filter((character) => character.id !== action.payload.id);
+        state.selectedCharacters = [...state.selectedCharacters.filter((character) => character.id !== action.payload.id )];
       },
       setAvailableCharacters: (state, action) => {
         state.availableCharacters = action.payload;

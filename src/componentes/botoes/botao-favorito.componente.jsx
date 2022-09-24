@@ -27,20 +27,16 @@ const BotaoFavorito = ({ isFavorito, charId }) => {
   const [favorito, setFavorito] = useState(isFavorito);
 
   const handleClick = () => {
-    console.log("isFavorito", isFavorito);
-    console.log("charId", charId);
-    console.log("selectorisfavorito", selectorFavorito);
-    console.log("ultimo favorito", favorito);
-    if (isFavorito) {
+    if (selectorPersonagem.includes(charId)) {
       dispatch(removeCharacters(charId));
       setFavorito(false);
-      console.log("selectorPersonagem", selectorPersonagem);
     } else {
       dispatch(addCharacters(charId));
       setFavorito(true);
-      console.log("selectorPersonagem", selectorPersonagem);
     }
+    console.log("selectorPersonagem", selectorPersonagem);
   };
+
   return (
     <div className="wrapper">
       <button className="botao-favorito" onClick={handleClick}>

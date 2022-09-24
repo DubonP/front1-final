@@ -3,7 +3,7 @@ import GradePersonagens from "../componentes/personagens/grade-personagens.compo
 import Paginacao from "../componentes/paginacao/paginacao.componente";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
-import { fetchAvailableCharacters } from "../state/features/characters";
+import { fetchAvailableCharacters, availableCharactersSelector } from "../state/features/characters";
 import { isLoadingSelector } from "../state/features/characters";
 import "./Inicio.css";
 
@@ -18,6 +18,7 @@ import "./Inicio.css";
 const PaginaInicio = () => {
   const dispatch = useDispatch();
   const isLoading = useSelector(isLoadingSelector);
+  const personagensSelector = useSelector(availableCharactersSelector);
 
   useEffect(() => {
     dispatch(fetchAvailableCharacters());
@@ -32,7 +33,7 @@ const PaginaInicio = () => {
       {isLoading ? <div className="loading">Carregando...</div> : null}
       <Filtros />
       <Paginacao />
-      <GradePersonagens />
+      <GradePersonagens selector={availableCharactersSelector} />
       <Paginacao />
     </div>
   );
