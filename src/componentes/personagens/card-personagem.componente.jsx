@@ -1,5 +1,7 @@
 import BotaoFavorito from "../botoes/botao-favorito.componente";
 import "./card-personagem.css";
+import { isFavoritoSelector } from "../../state/features/characters";
+import { useSelector } from "react-redux";
 
 /**
  * Card para cada personagem dentro da grade de personagem.
@@ -9,16 +11,21 @@ import "./card-personagem.css";
  *
  * @returns Elemento JSX
  */
-const CardPersonagem = () => {
+
+const CardPersonagem = ({ personagem }) => {
+  const isFavorito = useSelector(isFavoritoSelector);
+
   return (
     <div className="card-personagem">
-      <img
-        src="https://rickandmortyapi.com/api/character/avatar/1.jpeg"
-        alt="Rick Sanchez"
-      />
-      <div className="card-personagem-body">
-        <span>Rick Sanchez</span>
-        <BotaoFavorito isFavorito={false} />
+      <div className="card-personagem__imagem">
+        <img src={personagem.image} alt={personagem.name} />
+      </div>
+      <div className="card-personagem__conteudo">
+        <h3>{personagem.name}</h3>
+      
+      <div className="card-personagem__acoes">
+        <BotaoFavorito charId = {personagem.id} isFavorito={isFavorito} />
+      </div>
       </div>
     </div>
   );

@@ -1,9 +1,16 @@
 .card-personagem {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 400px;
+  height: 400px;
+  border: 1px solid #313131;
+  border-radius: 10px;
+  box-shadow: 3px 3px 5px #6a6a6a;
 }
 
-.card-personagem > img {
+.card-personagem__imagem{
   width: 300px;
   height: 300px;
   border-top-left-radius: 5px;
@@ -11,15 +18,20 @@
   border: 1px solid #d0d0d0;
 }
 
-.card-personagem > div.card-personagem-body {
-  padding: 10px;
-  border: 1px solid #d0d0d0;
-  border-top: 0;
-  border-bottom-right-radius: 5px;
-  border-bottom-left-radius: 5px;
+.card-personagem__conteudo {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
   font-size: 16px;
   font-weight: 500;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin: 0;
+}
+
+.card-personagem__conteudo h3, p{
+  margin: 5px;
+  padding: 0;
 }
