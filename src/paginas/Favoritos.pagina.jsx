@@ -20,11 +20,15 @@ const PaginaFavoritos = () => {
     dispatch(getFavCharacter());
   }, []);
 
+  const resetPage = () => {
+    window.location.reload();
+  };
+
   return (
     <div className="container">
       <div className="actions">
         <h3>Personagens Favoritos</h3>
-        <button className="danger">Test Button</button>
+        <button onClick={resetPage} className="Reset_buton_inicio">Reset Favoritos</button>
       </div>
       <GradePersonagens selector={favCharacters} />
     </div>

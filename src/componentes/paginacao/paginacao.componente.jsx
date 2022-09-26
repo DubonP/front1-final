@@ -9,7 +9,7 @@ import "./paginacao.css";
  * @returns Elemento JSX
  */
 
-const Paginacao = ({ postPerPage, totalPosts, paginate }) => {
+const Paginacao = ({ postPerPage, totalPosts, paginate}) => {
   const pageNumbers = [];
 
   for (let i = 1; i <= Math.ceil(totalPosts / postPerPage); i++) {
@@ -21,7 +21,7 @@ const Paginacao = ({ postPerPage, totalPosts, paginate }) => {
       {pageNumbers.map((number) => (
         <div key={number}>
           <button onClick={() => paginate(number)} disabled={false} className={"primary"}>
-            {number}
+            Pagina {number}
           </button>
         </div>
       ))}

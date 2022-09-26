@@ -6,7 +6,7 @@ import { put, takeLatest, call, select } from "redux-saga/effects";
 
 export function* getFavCharacter() {
   const selectedCharacters = yield select(selectedCharactersSelector);
-  if (selectedCharacters.length > 0) {
+  if (selectedCharacters.length > 1) {
     const response = yield call(
       fetch,
       `https://rickandmortyapi.com/api/character/${selectedCharacters}`,
@@ -19,6 +19,19 @@ export function* getFavCharacter() {
     );
     const data = yield response.json();
     yield put(setFavoriteCharacters(data));
+  } else if (selectedCharacters.length === 1) {
+    const response = yield call(
+      fetch,
+      `https://rickandmortyapi.com/api/character/${selectedCharacters}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    const data = yield response.json();
+    yield put(setFavoriteCharacters([data]));
   }
 }
 

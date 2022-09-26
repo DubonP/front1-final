@@ -23,8 +23,14 @@ const BotaoFavorito = ({ isFavorito, charId }) => {
 
   const handleClick = () => {
     if (selectorPersonagem.includes(charId)) {
+      if (selectorPersonagem.length === 1 && window.location.pathname === "/favoritos") {
+        dispatch(removeCharacters(charId));
+        dispatch(getFavCharacter([]));
+        window.location.reload();
+      } else {
       dispatch(removeCharacters(charId));
       dispatch(getFavCharacter());
+      }
     } else {
       dispatch(addCharacters(charId));
       dispatch(getFavCharacter());
