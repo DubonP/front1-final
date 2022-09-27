@@ -1,4 +1,5 @@
 import "./card-episodio.css";
+import { fetchDetalhes } from "../../state/sagas/detalhesSagas";
 
 /**
  * Card para cada episódio na visualização do personagem.
